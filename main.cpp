@@ -34,7 +34,7 @@ int main()
             getline(cin, line);
             ss.str(line);
             ss >> currentPerson >> gift >> recievers;
-            if (gift != 0 || recievers != 0)
+            if (gift != 0 && recievers != 0)
             {
                 money = gift / recievers;
                 auto it = persons.find(currentPerson);
@@ -46,6 +46,11 @@ int main()
                     auto it = persons.find(person);
                     it->second += money;
                 }
+            }
+            else if (gift != 0 && recievers == 0)
+            {
+                auto it = persons.find(currentPerson);
+                it->second += -1 * money;
             }
             ss.clear();
         }
