@@ -26,7 +26,6 @@ int main()
         {
             ss >> person;
             ss.clear();
-
             persons.insert(pair<string, int>(person, 0));
             personsVector.push_back(person);
         }
