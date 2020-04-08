@@ -9,6 +9,7 @@ using namespace std;
 
 int main()
 {
+    bool isEnd = false;
     string line, person, currentPerson;
     int gift, recievers, money, numberOfPeople;
     istringstream ss;
@@ -17,6 +18,10 @@ int main()
 
     while (getline(cin, line))
     {
+        if (isEnd)
+        {
+            cout<< endl;
+        }
         ss.str(line);
         ss >> numberOfPeople;
         ss.clear();
@@ -34,7 +39,7 @@ int main()
             getline(cin, line);
             ss.str(line);
             ss >> currentPerson >> gift >> recievers;
-            if (gift != 0 && recievers != 0)
+            if (recievers != 0)
             {
                 money = gift / recievers;
                 auto it = persons.find(currentPerson);
@@ -47,11 +52,6 @@ int main()
                     it->second += money;
                 }
             }
-            else if (gift != 0 && recievers == 0)
-            {
-                auto it = persons.find(currentPerson);
-                it->second += -1 * money;
-            }
             ss.clear();
         }
         for (auto vec_it = personsVector.begin(); vec_it < personsVector.end(); vec_it++)
@@ -61,7 +61,7 @@ int main()
         }
         personsVector.clear();
         persons.clear();
-        cout << endl;
+        isEnd = true;
     }
     return EXIT_SUCCESS;
 }
